@@ -1,66 +1,44 @@
-###################
-What is Nforms
-###################
+## Welcome to StackEdit!
+Nforms is designed for assignment for navya recruitment.
+It can generate forms dynamically with customized fields in form.
+We can `add` `edit` `update` the questios into a form.
+We can publish the response link to access particular form.
 
-NForms creates a basic forms dynamically and saves into database.
-You can edit or add questions in a form.
-you can give published link of the form to the users for reponding to the form.
+## Links
 
-*******************
-Release Information
-*******************
+Once you had copied the source code into server,  you can access this application from 
+http://localhost/rbalaga/
+* List of created forms will be shown here. 
+* Click on New form -> creates a new form.
+* Click on `edit form` which is at each form. here you can now `add multiple questions` and `edit questions or options` and `edit form title`.
+* Click on form to open the form as a candidate and where you can 	submit the form details.
+* you can check the responses in database in `fm_responseentry` and `fm_responses` tables.
+* you can check the forms configuration  tables as well in database.
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Here is a hosted application you can have demo of this application.
+https://rbalaga.000webhostapp.com/rbalaga/
 
-**************************
-Changelog and New Features
-**************************
-
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
-
-*******************
-Server Requirements
-*******************
-
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
-
-************
-Installation
-************
-
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+## Checklist
+* Make sure source code root folder name is `rbalaga`
+* Import `nforms.sql` file into mysql database. which creates supporting tables in mysql database.
+* configure database server details in `application -> config -> database.php` file.
+```php
+$db['default'] =  array(
+		'dsn'  =>  '',
+		'hostname'  =>  'localhost', //update mysql host
+		'username'  =>  'root', //update database user name
+		'password'  =>  '', //update user password
+		'database'  =>  'nforms',  //update database where we had imported nforms.sql file.
+```
+* update the server base url in `application -> config -> config.php`
+```php
+$config['base_url'] =  'http://localhost/rbalaga';//'https://rbalaga.000webhostapp.com/rbalaga';
+```
+* update `rbalaga->.htaccess` file in root folder.
+```php
+	RewriteEngine On
+    RewriteBase /rbalaga      //replace rbalaga with the root folder name you set for this source code
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L] 
+```
